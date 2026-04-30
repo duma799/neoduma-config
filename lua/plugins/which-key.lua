@@ -17,7 +17,7 @@ return {
 			{ "<leader>l", group = "Lint/LSP" },
 			{ "<leader>f", group = "Format/Find" },
 			{ "<leader>x", group = "Trouble" },
-			{ "<leader>a", group = "Arguments" },
+			{ "<leader>a", group = "AI/Arguments" },
 			{ "<leader>sn", group = "Noice" },
 		})
 	end,
