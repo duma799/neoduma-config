@@ -1,4 +1,3 @@
--- Read last selected theme from WezTerm sync file
 local function read_last_theme()
     local f = io.open(vim.fn.expand("~/.config/wezterm/current_theme.txt"), "r")
     if f then
@@ -14,7 +13,7 @@ end
 local last_theme = read_last_theme()
 
 return {
-    -- Gruvbox
+
     {
         "ellisonleao/gruvbox.nvim",
         lazy = last_theme ~= "gruvbox",
@@ -39,7 +38,6 @@ return {
         end,
     },
 
-    -- Tokyo Night
     {
         "folke/tokyonight.nvim",
         lazy = last_theme ~= "tokyonight",
@@ -62,7 +60,19 @@ return {
         end,
     },
 
-    -- Nightfox
+    {
+        dir = vim.fn.expand("~/Downloads/token-main"),
+        name = "token",
+        lazy = last_theme ~= "token",
+        priority = 1000,
+        config = function()
+            if last_theme == "token" then
+                vim.o.background = "dark"
+                vim.cmd.colorscheme("token")
+            end
+        end,
+    },
+
     {
         "EdenEast/nightfox.nvim",
         lazy = last_theme ~= "nightfox",

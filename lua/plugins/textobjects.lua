@@ -6,7 +6,6 @@ return {
 		config = function()
 			local ts_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
 
-			-- Textobject select keymaps
 			local select_keymaps = {
 				["af"] = { query = "@function.outer", desc = "Select around function" },
 				["if"] = { query = "@function.inner", desc = "Select inside function" },
@@ -26,7 +25,6 @@ return {
 				end, { desc = mapping.desc })
 			end
 
-			-- Move keymaps
 			local move_next = {
 				["]f"] = { query = "@function.outer", desc = "Next function start" },
 				["]c"] = { query = "@class.outer", desc = "Next class start" },
@@ -69,7 +67,6 @@ return {
 				end, { desc = mapping.desc })
 			end
 
-			-- Swap keymaps
 			local swap = require("nvim-treesitter-textobjects.swap")
 			vim.keymap.set("n", "<leader>an", function()
 				swap.swap_next("@parameter.inner")
@@ -78,7 +75,6 @@ return {
 				swap.swap_previous("@parameter.inner")
 			end, { desc = "Swap with previous argument" })
 
-			-- Make ; and , repeat textobject moves
 			vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
 			vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
 		end,

@@ -1,9 +1,5 @@
--- Custom color overrides
--- This file is loaded after colorschemes to apply your custom color preferences
-
 local M = {}
 
--- Enable transparent/blur background by default (works with WezTerm blur)
 M.transparent = true
 
 M.apply = function()
@@ -20,7 +16,7 @@ M.apply = function()
 		vim.api.nvim_set_hl(0, "TabLine", { bg = "none" })
 		vim.api.nvim_set_hl(0, "TabLineFill", { bg = "none" })
 		vim.api.nvim_set_hl(0, "TabLineSel", { bg = "none" })
-		-- Lualine statusline (bottom bar) — clear all backgrounds
+
 		local modes = { "normal", "insert", "visual", "replace", "command", "inactive", "terminal" }
 		local sections = { "a", "b", "c", "x", "y", "z" }
 		for _, mode in ipairs(modes) do
@@ -28,18 +24,18 @@ M.apply = function()
 				local name = "lualine_" .. section .. "_" .. mode
 				local ok, current = pcall(vim.api.nvim_get_hl, 0, { name = name })
 				local fg = (ok and current.fg) or nil
-				-- Use bg as fg for "a" sections (they have bright bg + dark fg by default)
+
 				if ok and current.bg and (section == "a" or section == "z") then
 					fg = current.bg
 				end
-				-- Brighten dark/nil foregrounds
+
 				if not fg or fg < 0x444444 then
 					fg = 0xbbbbbb
 				end
 				vim.api.nvim_set_hl(0, name, { fg = fg, bg = "none", bold = section == "a" or section == "z" })
 			end
 		end
-		-- Clear all lualine transitional and devicon highlights
+
 		local all_hls = vim.api.nvim_get_hl(0, {})
 		for name, hl in pairs(all_hls) do
 			if name:match("^lualine_transitional") then
@@ -48,10 +44,10 @@ M.apply = function()
 				vim.api.nvim_set_hl(0, name, { fg = hl.fg, bg = "none" })
 			end
 		end
-		-- Tabline buffer tabs
+
 		vim.api.nvim_set_hl(0, "TabLine", { bg = "none" })
 		vim.api.nvim_set_hl(0, "TabLineSel", { bg = "none", bold = true })
-		-- tabline.nvim highlight groups
+
 		vim.api.nvim_set_hl(0, "tabline_a_normal", { bg = "none" })
 		vim.api.nvim_set_hl(0, "tabline_b_normal", { bg = "none" })
 		vim.api.nvim_set_hl(0, "tabline_b_normal_bold", { bg = "none", bold = true })
@@ -62,7 +58,7 @@ M.apply = function()
 		vim.api.nvim_set_hl(0, "tabline_a_normal_bold_italic", { bg = "none", bold = true, italic = true })
 		vim.api.nvim_set_hl(0, "tabline_a_to_b", { bg = "none" })
 		vim.api.nvim_set_hl(0, "tabline_a_to_c", { bg = "none" })
-		-- Neo-tree sidebar
+
 		vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
 		vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
 		vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = "none", fg = "none" })
@@ -71,9 +67,9 @@ M.apply = function()
 		vim.api.nvim_set_hl(0, "NeoTreeTabInactive", { bg = "none" })
 		vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorInactive", { bg = "none" })
 	end
-	-- Remove cursorline background for both themes
+
 	vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
-	-- Thick separators for opaque theme, thin for transparent
+
 	if M.transparent then
 		vim.opt.fillchars:remove({ "vert", "horiz", "vertleft", "vertright", "verthoriz" })
 	else
@@ -81,7 +77,6 @@ M.apply = function()
 	end
 end
 
--- Auto-apply after colorscheme changes
 vim.api.nvim_create_autocmd("ColorScheme", {
 	pattern = "*",
 	callback = function()
@@ -89,7 +84,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	end,
 })
 
--- Apply after all plugins have loaded
 vim.api.nvim_create_autocmd("User", {
 	pattern = "VeryLazy",
 	once = true,

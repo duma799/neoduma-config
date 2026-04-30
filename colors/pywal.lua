@@ -1,6 +1,3 @@
--- Pywal colorscheme for Neovim
--- Reads colors from ~/.cache/wal/colors.json
-
 vim.cmd("hi clear")
 if vim.fn.exists("syntax_on") then
     vim.cmd("syntax reset")
@@ -8,7 +5,6 @@ end
 
 vim.g.colors_name = "pywal"
 
--- Read pywal colors from JSON
 local function get_wal_colors()
     local colors_file = vim.fn.expand("~/.cache/wal/colors.json")
     local file = io.open(colors_file, "r")
@@ -58,7 +54,6 @@ local hl = function(group, opts)
     vim.api.nvim_set_hl(0, group, opts)
 end
 
--- Editor highlights
 hl("Normal", { fg = c.fg, bg = c.bg })
 hl("NormalFloat", { fg = c.fg, bg = c.color0 })
 hl("FloatBorder", { fg = c.color8, bg = c.color0 })
@@ -78,24 +73,20 @@ hl("SpecialKey", { fg = c.color8 })
 hl("Whitespace", { fg = c.color8 })
 hl("EndOfBuffer", { fg = c.bg })
 
--- Search
 hl("Search", { fg = c.bg, bg = c.color3 })
 hl("IncSearch", { fg = c.bg, bg = c.color4 })
 hl("CurSearch", { fg = c.bg, bg = c.color4 })
 hl("Substitute", { fg = c.bg, bg = c.color1 })
 
--- Selection
 hl("Visual", { bg = c.color8 })
 hl("VisualNOS", { bg = c.color8 })
 
--- Messages
 hl("ErrorMsg", { fg = c.color1, bold = true })
 hl("WarningMsg", { fg = c.color3, bold = true })
 hl("ModeMsg", { fg = c.fg, bold = true })
 hl("MoreMsg", { fg = c.color2 })
 hl("Question", { fg = c.color4 })
 
--- Statusline & Tabline
 hl("StatusLine", { fg = c.fg, bg = c.color0 })
 hl("StatusLineNC", { fg = c.color8, bg = c.color0 })
 hl("TabLine", { fg = c.color8, bg = c.color0 })
@@ -104,25 +95,21 @@ hl("TabLineSel", { fg = c.fg, bg = c.bg, bold = true })
 hl("WinBar", { fg = c.fg, bg = c.bg })
 hl("WinBarNC", { fg = c.color8, bg = c.bg })
 
--- Popup menu
 hl("Pmenu", { fg = c.fg, bg = c.color0 })
 hl("PmenuSel", { fg = c.bg, bg = c.color4 })
 hl("PmenuSbar", { bg = c.color0 })
 hl("PmenuThumb", { bg = c.color8 })
 
--- Diff
 hl("DiffAdd", { fg = c.color2, bg = c.bg })
 hl("DiffChange", { fg = c.color3, bg = c.bg })
 hl("DiffDelete", { fg = c.color1, bg = c.bg })
 hl("DiffText", { fg = c.color4, bg = c.bg })
 
--- Spelling
 hl("SpellBad", { sp = c.color1, undercurl = true })
 hl("SpellCap", { sp = c.color3, undercurl = true })
 hl("SpellLocal", { sp = c.color4, undercurl = true })
 hl("SpellRare", { sp = c.color5, undercurl = true })
 
--- Syntax highlighting
 hl("Comment", { fg = c.color8, italic = true })
 hl("Constant", { fg = c.color5 })
 hl("String", { fg = c.color2 })
@@ -165,7 +152,6 @@ hl("Ignore", { fg = c.color8 })
 hl("Error", { fg = c.color1, bold = true })
 hl("Todo", { fg = c.bg, bg = c.color3, bold = true })
 
--- Treesitter
 hl("@variable", { fg = c.fg })
 hl("@variable.builtin", { fg = c.color1 })
 hl("@variable.parameter", { fg = c.color6 })
@@ -204,7 +190,6 @@ hl("@tag", { fg = c.color1 })
 hl("@tag.attribute", { fg = c.color4 })
 hl("@tag.delimiter", { fg = c.fg })
 
--- LSP semantic tokens
 hl("@lsp.type.class", { fg = c.color3 })
 hl("@lsp.type.decorator", { fg = c.color4 })
 hl("@lsp.type.enum", { fg = c.color3 })
@@ -220,7 +205,6 @@ hl("@lsp.type.struct", { fg = c.color3 })
 hl("@lsp.type.type", { fg = c.color3 })
 hl("@lsp.type.variable", { fg = c.fg })
 
--- Diagnostics
 hl("DiagnosticError", { fg = c.color1 })
 hl("DiagnosticWarn", { fg = c.color3 })
 hl("DiagnosticInfo", { fg = c.color4 })
@@ -230,12 +214,10 @@ hl("DiagnosticUnderlineWarn", { sp = c.color3, undercurl = true })
 hl("DiagnosticUnderlineInfo", { sp = c.color4, undercurl = true })
 hl("DiagnosticUnderlineHint", { sp = c.color6, undercurl = true })
 
--- Git signs
 hl("GitSignsAdd", { fg = c.color2 })
 hl("GitSignsChange", { fg = c.color3 })
 hl("GitSignsDelete", { fg = c.color1 })
 
--- Telescope
 hl("TelescopeNormal", { fg = c.fg, bg = c.bg })
 hl("TelescopeBorder", { fg = c.color8 })
 hl("TelescopePromptNormal", { fg = c.fg, bg = c.color0 })
@@ -246,7 +228,6 @@ hl("TelescopeResultsTitle", { fg = c.bg, bg = c.color5 })
 hl("TelescopeSelection", { fg = c.fg, bg = c.color0 })
 hl("TelescopeMatching", { fg = c.color4, bold = true })
 
--- NvimTree / Neo-tree
 hl("NvimTreeNormal", { fg = c.fg, bg = c.bg })
 hl("NvimTreeFolderIcon", { fg = c.color4 })
 hl("NvimTreeFolderName", { fg = c.color4 })
@@ -264,31 +245,26 @@ hl("NeoTreeGitModified", { fg = c.color3 })
 hl("NeoTreeGitAdded", { fg = c.color2 })
 hl("NeoTreeGitDeleted", { fg = c.color1 })
 
--- Indent Blankline
 hl("IndentBlanklineChar", { fg = c.color0 })
 hl("IblIndent", { fg = c.color0 })
 hl("IblScope", { fg = c.color8 })
 
--- Which-key
 hl("WhichKey", { fg = c.color4 })
 hl("WhichKeyGroup", { fg = c.color5 })
 hl("WhichKeyDesc", { fg = c.fg })
 hl("WhichKeySeparator", { fg = c.color8 })
 
--- Lazy
 hl("LazyButton", { fg = c.fg, bg = c.color0 })
 hl("LazyButtonActive", { fg = c.bg, bg = c.color4 })
 hl("LazyH1", { fg = c.bg, bg = c.color4, bold = true })
 hl("LazySpecial", { fg = c.color4 })
 
--- Cmp
 hl("CmpItemAbbr", { fg = c.fg })
 hl("CmpItemAbbrMatch", { fg = c.color4, bold = true })
 hl("CmpItemAbbrMatchFuzzy", { fg = c.color4, bold = true })
 hl("CmpItemKind", { fg = c.color5 })
 hl("CmpItemMenu", { fg = c.color8 })
 
--- Notify
 hl("NotifyERRORBorder", { fg = c.color1 })
 hl("NotifyWARNBorder", { fg = c.color3 })
 hl("NotifyINFOBorder", { fg = c.color4 })
@@ -305,24 +281,20 @@ hl("NotifyINFOTitle", { fg = c.color4 })
 hl("NotifyDEBUGTitle", { fg = c.color8 })
 hl("NotifyTRACETitle", { fg = c.color5 })
 
--- Match parentheses
 hl("MatchParen", { fg = c.color4, bg = c.color8, bold = true })
 
--- Misc
 hl("Directory", { fg = c.color4 })
 hl("Title", { fg = c.color4, bold = true })
 hl("Conceal", { fg = c.color8 })
 
--- Auto-reload when pywal colors change
 local wal_colors_path = vim.fn.expand("~/.cache/wal/colors.json")
 local group = vim.api.nvim_create_augroup("PywalAutoReload", { clear = true })
 
--- Watch for focus gained (when returning to nvim after running wal)
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
     group = group,
     callback = function()
         if vim.g.colors_name == "pywal" then
-            -- Check if colors.json was modified
+
             local stat = vim.loop.fs_stat(wal_colors_path)
             if stat then
                 local mtime = stat.mtime.sec
@@ -335,7 +307,6 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
     end,
 })
 
--- Store initial mtime
 local stat = vim.loop.fs_stat(wal_colors_path)
 if stat then
     vim.g.pywal_last_mtime = stat.mtime.sec

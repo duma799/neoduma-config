@@ -82,7 +82,6 @@ return {
         },
       })
 
-      -- Use buffer source for `/` and `?` (search)
       cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
@@ -90,7 +89,6 @@ return {
         },
       })
 
-      -- Use cmdline & path source for ':' (command mode)
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({

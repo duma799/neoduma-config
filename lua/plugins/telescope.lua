@@ -8,7 +8,6 @@ return {
             vim.keymap.set("n", "<C-p>", builtin.find_files, {})
             vim.keymap.set("n", "<A-f>", builtin.live_grep, {})
 
-            -- Function for searching and scoping into a directory
             _G.search_and_scope_into_directory = function()
                 builtin.find_files({
                     prompt_title = "Search Directories",
@@ -19,7 +18,6 @@ return {
                             local selection = require("telescope.actions.state").get_selected_entry()
                             local selected_dir = selection.path
 
-                            -- Change the current working directory to the selected directory
                             vim.cmd("cd " .. vim.fn.fnameescape(selected_dir))
                             actions.close(prompt_bufnr)
                         end)
@@ -28,7 +26,6 @@ return {
                 })
             end
 
-            -- Keybinding to trigger directory search and scoping
             vim.keymap.set("n", "<A-d>", search_and_scope_into_directory)
         end
     },
@@ -91,4 +88,3 @@ return {
         end,
     },
 }
-

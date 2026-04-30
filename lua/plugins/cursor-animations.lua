@@ -1,5 +1,5 @@
 return {
-  -- Mini.animate for smooth cursor and scroll animations
+
   {
     'echasnovski/mini.animate',
     event = 'VeryLazy',
@@ -25,7 +25,6 @@ return {
     end
   },
 
-  -- Beacon.nvim for cursor flash on big jumps
   {
     'rainbowhxch/beacon.nvim',
     event = 'VeryLazy',

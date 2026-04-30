@@ -2,14 +2,14 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    ---@type snacks.Config
+
     opts = {
         bigfile = { enabled = true },
         indent = { enabled = true },
         input = { enabled = true },
         quickfile = { enabled = true },
         scroll = { enabled = true },
-        statuscolumn = { enabled = true },
+        statuscolumn = { enabled = false },
         words = { enabled = true },
     },
     keys = {
@@ -51,8 +51,8 @@ return {
                 _G.bt = function()
                     Snacks.debug.backtrace()
                 end
-                vim.print = _G.dd 
-                -- Create some toggle mappings
+                vim.print = _G.dd
+
                 Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
                 Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
             end,

@@ -14,7 +14,6 @@ return {
 			sh = { "shellcheck" },
 		}
 
-		-- Only lint if the linter binary exists
 		local function try_lint()
 			local ft = vim.bo.filetype
 			local linters = lint.linters_by_ft[ft]

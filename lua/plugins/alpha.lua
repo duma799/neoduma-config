@@ -10,8 +10,7 @@ return {
         local color4 = vim.g.color4 or "#ffffff"
         local color5 = vim.g.color5 or "#ffffff"
         local color6 = vim.g.color6 or "#ffffff"
-        
-        -- helper function for utf8 chars
+
         local function getCharLen(s, pos)
             local byte = string.byte(s, pos)
             if not byte then
@@ -19,7 +18,7 @@ return {
             end
             return (byte < 0x80 and 1) or (byte < 0xE0 and 2) or (byte < 0xF0 and 3) or (byte < 0xF8 and 4) or 1
         end
-        
+
         local function applyColors(logo, colors, logoColors)
             dashboard.section.header.val = logo
             for key, color in pairs(colors) do
@@ -43,7 +42,7 @@ return {
             end
             return dashboard.opts
         end
-        
+
         require("alpha").setup(applyColors({
             [[███████╗    ██████╗ ]],
             [[██╔════╝    ██╔═══╝ ]],
@@ -67,7 +66,7 @@ return {
             [[aaaaaaaa    aaa     ]],
             [[d  d  d  e  e  e    ]],
         }))
-        
+
         dashboard.section.buttons.val = {
             dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
             dashboard.button( "f", "󰱼  > Find file", ":lua require('telescope.builtin').find_files({ find_command = { 'rg', '--files' } })<CR>"),
@@ -78,7 +77,7 @@ return {
             dashboard.button( "h", "  > Settings" , ":cd ~/.config/hypr | Telescope find_files<CR>"),
             dashboard.button( "q", "  > Quit", ":qa<CR>"),
         }
-        
+
         dashboard.section.footer.val = {
             "",
             "Welcome!",

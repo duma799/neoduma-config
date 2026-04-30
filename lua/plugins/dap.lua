@@ -1,5 +1,5 @@
 return {
-	-- DAP (Debug Adapter Protocol)
+
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
@@ -11,13 +11,10 @@ return {
 			local dap = require("dap")
 			local dapui = require("dapui")
 
-			-- Setup DAP UI
 			dapui.setup()
 
-			-- Setup Python debugging
 			require("dap-python").setup("python3")
 
-			-- Auto open/close DAP UI
 			dap.listeners.after.event_initialized["dapui_config"] = function()
 				dapui.open()
 			end
@@ -28,7 +25,6 @@ return {
 				dapui.close()
 			end
 
-			-- Keybindings for debugging
 			vim.keymap.set("n", "<leader>db", function()
 				require("dap").toggle_breakpoint()
 			end, { desc = "Debug: Toggle Breakpoint" })

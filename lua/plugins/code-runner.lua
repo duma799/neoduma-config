@@ -22,11 +22,10 @@ return {
 				sh = "bash",
 			},
 			project = {
-				-- Project-specific run commands
+
 			},
 		})
 
-		-- Keybindings
 		vim.keymap.set("n", "<leader>rc", ":RunCode<CR>", { desc = "Run Code (code_runner)" })
 		vim.keymap.set("n", "<leader>rf", ":RunFile<CR>", { desc = "Run File (code_runner)" })
 		vim.keymap.set("n", "<leader>rt", ":RunFile tab<CR>", { desc = "Run in new tab" })
