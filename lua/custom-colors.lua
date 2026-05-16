@@ -10,7 +10,7 @@ M.apply = function()
 		vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 		vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
 		vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none", fg = "none" })
-		vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#000000", bg = "none" })
+		vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#9AA1AB", bg = "none" })
 		vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
 		vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
 		vim.api.nvim_set_hl(0, "TabLine", { bg = "none" })
@@ -71,7 +71,7 @@ M.apply = function()
 	vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
 
 	if M.transparent then
-		vim.opt.fillchars:remove({ "vert", "horiz", "vertleft", "vertright", "verthoriz" })
+		vim.opt.fillchars:append({ vert = "┃", horiz = "━", vertleft = "┫", vertright = "┣", verthoriz = "╋" })
 	else
 		vim.opt.fillchars:append({ vert = "▐", horiz = "▄", vertleft = "▐", vertright = "▐", verthoriz = "▐" })
 	end

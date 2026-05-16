@@ -7,10 +7,15 @@ local function read_last_theme()
             return name
         end
     end
-    return "nightfox"
+    return "ultraviolet"
 end
 
 local last_theme = read_last_theme()
+
+local local_schemes = { ultraviolet = true, pywal = true, ["unyielding-grayscale"] = true, token = true }
+if local_schemes[last_theme] then
+    pcall(vim.cmd.colorscheme, last_theme)
+end
 
 return {
 
@@ -56,19 +61,6 @@ return {
             })
             if last_theme == "tokyonight" then
                 vim.cmd.colorscheme("tokyonight")
-            end
-        end,
-    },
-
-    {
-        dir = vim.fn.expand("~/Downloads/token-main"),
-        name = "token",
-        lazy = last_theme ~= "token",
-        priority = 1000,
-        config = function()
-            if last_theme == "token" then
-                vim.o.background = "dark"
-                vim.cmd.colorscheme("token")
             end
         end,
     },
