@@ -43,29 +43,35 @@ return {
             return dashboard.opts
         end
 
-        require("alpha").setup(applyColors({
-            [[███████╗    ██████╗ ]],
-            [[██╔════╝    ██╔═══╝ ]],
-            [[█████╗      ██████╗ ]],
-            [[██╔══╝      ██╔═══╝ ]],
-            [[███████╗    ██║     ]],
-            [[╚══════╝    ╚═╝     ]],
-            [[N  E  O  V  I  M    ]],
-        }, {
-            ["a"] = { fg = color9, ctermfg = 33},
-            ["b"] = { fg = color3, ctermfg = 33},
-            ["c"] = { fg = color4, ctermfg = 33},
-            ["d"] = { fg = color5, ctermfg = 33},
-            ["e"] = { fg = color6, ctermfg = 33},
-        }, {
-            [[bbbbbbba    cccccca ]],
-            [[bbaaaaaa    ccaaaaa ]],
-            [[bbbbba      cccccca ]],
-            [[bbaaaa      ccaaaaa ]],
-            [[bbbbbbba    cca     ]],
-            [[aaaaaaaa    aaa     ]],
-            [[d  d  d  e  e  e    ]],
-        }))
+        local logo = {
+            [[           ▄▄▄▄▄    ]],
+            [[           ██▀▀▀██  ]],
+            [[    ▄▄     ██    ██ ]],
+            [[    ██     ██    ██ ]],
+            [[           ██    ██ ]],
+            [[    ██     ██▄▄▄██  ]],
+            [[    ▀▀     ▀▀▀▀▀   ]],
+            [[]],
+            [[]],
+            [[]],
+            [[]],
+        }
+
+        local logoColors = {}
+        for _, line in ipairs(logo) do
+            table.insert(logoColors, (line
+                :gsub('▄', 'a')
+                :gsub('█', 'a')
+                :gsub('▀', 'a')))
+        end
+
+        require("alpha").setup(applyColors(logo, {
+            ["a"] = { fg = color9,  ctermfg = 33 },
+            ["b"] = { fg = color3,  ctermfg = 33 },
+            ["c"] = { fg = color4,  ctermfg = 33 },
+            ["d"] = { fg = color5,  ctermfg = 33 },
+            ["e"] = { fg = color6,  ctermfg = 33 },
+        }, logoColors))
 
         dashboard.section.buttons.val = {
             dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
