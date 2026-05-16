@@ -27,9 +27,11 @@ Switch themes with keymaps that sync your terminal background:
 
 | Keymap | Theme |
 |---|---|
+| `Space cu` | Ultraviolet (default) |
 | `Space cg` | Gruvbox (hard contrast) |
 | `Space ct` | Tokyo Night |
 | `Space cn` | Nightfox |
+| `Space cf` | Token |
 | `Space cb` | Toggle transparency |
 
 Also includes `unyielding-grayscale` and `pywal` as custom colorschemes in `colors/`.
@@ -136,6 +138,7 @@ Leader key is `Space`. Press it and wait to see all groups via which-key.
 | [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) | Gruvbox theme |
 | [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) | Tokyo Night theme |
 | [nightfox.nvim](https://github.com/EdenEast/nightfox.nvim) | Nightfox theme |
+| ultraviolet / token | Custom colorschemes (vendored in `colors/`) |
 
 ## Structure
 
@@ -146,8 +149,11 @@ Leader key is `Space`. Press it and wait to see all groups via which-key.
 │   ├── vim-options.lua   # Core editor settings
 │   ├── keymaps.lua       # All keybindings + theme sync
 │   ├── custom-colors.lua # Transparency and highlight overrides
+│   ├── token/            # Token colorscheme (vendored)
 │   └── plugins/          # One file per plugin (lazy.nvim spec)
 └── colors/               # Custom colorschemes
+    ├── ultraviolet.lua
+    ├── token.lua
     ├── unyielding-grayscale.lua
     └── pywal.lua
 ```
